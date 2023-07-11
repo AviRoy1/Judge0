@@ -13,7 +13,7 @@ const router = express.Router();
 
 
 const signupSchema = joi.object().keys({
-    firstname: joi.string().required(),
+    name: joi.string().required(),
     email: joi.string().lowercase().email().required(),
     password: joi.string().required(),
 });
@@ -41,6 +41,7 @@ router.post(
                 name: req.body.name,
                 email: req.body.email,
                 password: encryptPass,
+                createdAt: new Date(),
             });
 
             const accessToken = jwt.sign(
@@ -50,8 +51,8 @@ router.post(
                 },
                 JWTSEC
             );
-
-            return res.status(200).json({user: newUser, token: accessToken});
+            const result = await User.findById(newUser._id).select("-password");
+            return res.status(200).json({user: result, token: accessToken});
         } catch (err) {
             return res.status(400).json({ message: err });
         }
