@@ -5,7 +5,6 @@ export interface ISubmission extends Document {
     userId: mongoose.Schema.Types.ObjectId;
     language: String;
     code: String;
-    isAdmin: Boolean,
     createdAt: Date;
 }
 
@@ -14,7 +13,6 @@ const submissionSchema = new mongoose.Schema(
         userId: {type: mongoose.Schema.Types.ObjectId, require:true, ref: "User"},
         language: {type:String, require:true},
         code: {type:String ,require: true},
-        isAdmin: {type:Boolean , default: false},
         createdAt: {type: Date, require:true},
     }
 );
