@@ -7,12 +7,13 @@ import helmet from 'helmet';
 import httpStatus from "http-status";
 import ApiError from './utils';
 import { errorConverter } from './middleware/error';
+import executionQueue from './processors/jobQueue';
 
 dotenv.config();
 const app = express();
 
 connectDB();
-
+executionQueue;
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 

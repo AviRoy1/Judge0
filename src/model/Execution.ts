@@ -18,7 +18,7 @@ const executionSchema = new mongoose.Schema(
         submissionId: {type: mongoose.Schema.Types.ObjectId, require:true, ref: "Submission"},
         output: {type:String, require:true},
         error: {type:String ,require: true},
-        status: {type: String, require: true, enum:["queued","running","completed","failed"]},
+        status: {type: String, require: true, enum:["","queued","running","completed","failed"]},
         startedAt: {type:Date},
         completedAt: {type:Date},
         memoryUsed: {Type:Number},
