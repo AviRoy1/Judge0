@@ -19,8 +19,8 @@ const executionSchema = new mongoose.Schema(
         output: {type:String, require:true},
         error: {type:String ,require: true},
         status: {type: String, require: true, enum:["queued","running","completed","failed"]},
-        startedAt: {type:Date, require:true},
-        completedAt: {type:Date, require:true},
+        startedAt: {type:Date},
+        completedAt: {type:Date},
         memoryUsed: {Type:Number},
         createdAt: {type: Date, require:true},
     }
