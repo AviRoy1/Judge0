@@ -12,8 +12,8 @@ export interface IUser extends Document {
 const userSchema = new mongoose.Schema(
     {
         name: {type:String, require:true},
-        password: {type:String, require:true, trim:true, unique:true},
-        email: {type:String ,require: true, trim: true},
+        email: {type:String, require:true, trim:true, unique:true},
+        password: {type:String ,require: true, trim: true},
         isAdmin: {type:Boolean , default: false},
         createdAt: {type: Date, require:true},
     }

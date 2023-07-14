@@ -7,13 +7,12 @@ import helmet from 'helmet';
 import httpStatus from "http-status";
 import ApiError from './utils';
 import { errorConverter } from './middleware/error';
-import executionQueue from './processors/jobQueue';
+// import { executionQueue } from './processors/jobQueue';
 
 dotenv.config();
 const app = express();
 
 connectDB();
-executionQueue;
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -27,6 +26,27 @@ app.use(mongoSanitize());
 app.use('/api', allApi);
 
 
+// import Queue from 'bull';
+
+// const executionQueue = new Queue('codeExecution', {
+//   redis: {
+//     host: 'localhost',
+//     port: 6379,
+//   },
+// });
+
+// executionQueue.process(async (job) => {
+//   console.log(job.data);
+// });
+
+// const newJob = {
+//   language: 'python',
+//   code: 'print("Hello, World!")',
+// };
+
+// (async () => {
+//   await executionQueue.add(newJob);
+// })();
 
   
 
@@ -44,6 +64,8 @@ app.use(errorConverter);
 const server = app.listen(process.env.port, () => {
     console.log(`Listening to port ${process.env.port}`);
   });
+// executionQueue;
+
   
   const exitHandler = () => {
     if (server) {

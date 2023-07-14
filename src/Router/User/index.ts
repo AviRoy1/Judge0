@@ -49,7 +49,8 @@ router.post(
                   id: newUser._id,
                   email: newUser.email,
                 },
-                JWTSEC
+                JWTSEC,
+                {expiresIn: '1d'}
             );
             const result = await User.findById(newUser._id).select("-password");
             return res.status(200).json({user: result, token: accessToken});

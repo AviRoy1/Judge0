@@ -8,8 +8,8 @@ export interface IExecution extends Document {
     completedAt: Date;
     output: String;
     error: String;
-    // timeElapsed: 
-    memoryUsed: Number;
+    executionTime: String;
+    memoryUsed: number;
     createdAt: Date;
 }
 
@@ -19,10 +19,12 @@ const executionSchema = new mongoose.Schema(
         output: {type:String, require:true},
         error: {type:String ,require: true},
         status: {type: String, require: true, enum:["","queued","running","completed","failed"]},
-        startedAt: {type:Date},
+        submittedAt: {type:Date},
         completedAt: {type:Date},
         memoryUsed: {Type:Number},
+        executionTime: {Type: String},
         createdAt: {type: Date, require:true},
+
     }
 );
 
